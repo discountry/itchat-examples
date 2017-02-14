@@ -32,7 +32,7 @@ def simple_reply(msg):
 def response_handler(msg):
     response = ''
     if '签到' in msg['Text'] and 'helper' in msg['Text']:
-        response = check_in(msg) + '用户: %s' % msg['ActualNickName']
+        response = check_in(msg) + '\n用户: %s' % msg['ActualNickName']
     elif '检查' in msg['Text'] and 'helper' in msg['Text']:
         response = print_unchecked_username(get_unchecked_member())
     elif '清理' in msg['Text'] and 'helper' in msg['Text']:
