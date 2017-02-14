@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import itchat
-from itchat.content import *
+from itchat.content import TEXT
 from peewee import *
 import datetime
 
@@ -28,11 +28,6 @@ def simple_reply(msg):
     response = response_handler(msg)
     print(response)
     return response
-
-@itchat.msg_register(SYSTEM, isGroupChat=True)
-def welcome(msg):
-    return '欢迎加入100days挑战，艾特我签到开启你的旅程！'
-
 
 def response_handler(msg):
     response = ''
@@ -94,6 +89,7 @@ def print_unchecked_username(memberList):
     for member in memberList:
         content += member['NickName'] + '\n'
     return content
+
 def delete_unchecked_member(memberList):
     if datetime.datetime.now().hour < 23: return '请在23时以后清理未签到成员！'
     itchat.get_chatrooms(update=True)
