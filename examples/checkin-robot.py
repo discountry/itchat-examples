@@ -70,8 +70,7 @@ def get_unchecked_member():
     unchecked_users = User.select().where(User.updated_date < datetime.datetime.now().strftime("%Y-%m-%d"))
     for user in unchecked_users:
         if [m for m in chatroom['MemberList'] if m['NickName'] == user.username]:
-            memberList.append([m for m in chatroom['MemberList'] if m['NickName'] == user.username]
-[0])
+            memberList.append([m for m in chatroom['MemberList'] if m['NickName'] == user.username][0])
     return memberList
 
 def print_top_members():
