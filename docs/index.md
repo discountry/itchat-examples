@@ -1,3 +1,14 @@
-# itChat Examples
+# itchat-examples
 
-This repo contains some of my wechat personal robot examples using [itChat](https://github.com/littlecodersh/ItChat).
+Wechat personal helper examples collection.
+
+## Table of Contents
+
+* [auto-reply](https://github.com/discountry/itchat-examples/blob/master/examples/auto-reply-greetings.py)
+* [auto-reply-with-random-quote-api](https://github.com/discountry/itchat-examples/blob/master/examples/auto-reply-greetings-with-random-quote-api.py)
+* [checkin-robot](https://github.com/discountry/itchat-examples/blob/master/examples/checkin-robot.py)
+* [auto-invite](https://github.com/discountry/itchat-examples/blob/master/examples/auto-invite.py)
+
+## Dependencies
+
+* [itChat](https://github.com/littlecodersh/ItChat)
