@@ -3,17 +3,17 @@ import itchat, datetime, schedule, time, threading
 from itchat.content import *
 from peewee import *
 
-db = MySQLDatabase('xxxx', user='xxxx', password='xxxx', charset='xxxx')
+db = MySQLDatabase('xxxxxx', user='xxxxxx', password='xxxxxx', charset='utf8mb4')
 
 class BaseModel(Model):
-        class Meta:
-                database = db
+    class Meta:
+        database = db
 
 class User(BaseModel):
-        username = CharField(unique=True,max_length=100)
-        count = IntegerField(default=1)
-        updated_date = DateTimeField(default=datetime.datetime.now)
-        created_date = DateTimeField(default=datetime.datetime.now)
+    username = CharField(unique=True,max_length=100)
+    count = IntegerField(default=1)
+    updated_date = DateTimeField(default=datetime.datetime.now)
+    created_date = DateTimeField(default=datetime.datetime.now)
 
 @itchat.msg_register(TEXT, isFriendChat=True, isGroupChat=True, isMpChat=True)
 def simple_reply(msg):
@@ -30,7 +30,6 @@ def simple_reply(msg):
 def welcome(msg):
     return '欢迎加入100days挑战，艾特我签到开启你的旅程！'
 
-
 def response_handler(msg):
     response = ''
     if '签到' in msg['Text'] and 'helper' in msg['Text']:
@@ -43,7 +42,7 @@ def response_handler(msg):
     elif '排行' in msg['Text'] and 'helper' in msg['Text']:
         #response = print_top_members()
         response = '每日23：00公布签到排行榜！'
-    elif '计划任务' in msg['Text'] and 'helper' in msg['Text']:
+    elif '计划任务' in msg['Text'] and 'helper' in msg['Text'] and '余博伦' in msg['ActualNickName']:
         run_threaded(daily_job)
         response = '开始自动执行每日计划任务！'
     else:
@@ -69,8 +68,7 @@ def get_unchecked_member():
     unchecked_users = User.select().where(User.updated_date < datetime.datetime.now().strftime("%Y-%m-%d"))
     for user in unchecked_users:
         if [m for m in chatroom['MemberList'] if m['NickName'] == user.username]:
-            memberList.append([m for m in chatroom['MemberList'] if m['NickName'] == user.username]
-[0])
+            memberList.append([m for m in chatroom['MemberList'] if m['NickName'] == user.username][0])
     return memberList
 
 def print_top_members():
@@ -125,5 +123,3 @@ def run_threaded(job_func):
 itchat.auto_login(enableCmdQR=2,hotReload=True)
 
 run_threaded(itchat.run)
-
-
