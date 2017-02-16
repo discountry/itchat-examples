@@ -55,7 +55,7 @@ def check_in(userinfo):
         User.create(username=userinfo['ActualNickName'])
         return '开始你的100天挑战吧！中断1天就会被踢出袄~'
     if User.get(User.username == userinfo['ActualNickName']).updated_date.date().strftime("%Y-%m-%d") < datetime.datetime.now().strftime("%Y-%m-%d"):
-        User.update(updated_date = datetime.datetime.now(),count=User.count + 1).where(User.openid == userinfo['ActualUserName']).execute()
+        User.update(updated_date = datetime.datetime.now(),count=User.count + 1).where(User.username == userinfo['ActualNickName']).execute()
         return '签到成功！' + '时间: %s' % User.get(User.username == userinfo['ActualNickName']).updated_date
     return '您今日已签到！'
 
