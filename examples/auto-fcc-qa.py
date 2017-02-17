@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import itchat, validators
+from itchat.content import TEXT
 from peewee import *
 
 db = MySQLDatabase('xxxxx', user='xxxxxx', password='xxxxxxxx', charset='utf8mb4')
