@@ -9,6 +9,7 @@ Wechat personal helper examples collection.
 * [checkin-robot](https://github.com/discountry/itchat-examples/blob/master/examples/checkin-robot.py)
 * [checkin-robot-with-schedule-mission](https://github.com/discountry/itchat-examples/blob/master/examples/checkin-robot-with-schedule-mission.py)
 * [auto-invite](https://github.com/discountry/itchat-examples/blob/master/examples/auto-invite.py)
+* [auto-fcc-question&answer-bot](https://github.com/discountry/itchat-examples/blob/master/examples/auto-fcc-qa.py)
 
 ## Dependencies
 
