@@ -29,19 +29,8 @@ def auto_add_member(msg,roomName):
 #处理微信聊天消息，根据关键字返回相应群组邀请链接
 @itchat.msg_register(TEXT)
 def auto_invite_reply(msg):
-    if group_dict.has_key(msg['Text']):
+    if msg['Text'] in group_dict:
         return auto_add_member(msg,group_dict[msg['Text']])
-
-'''
-def handle_by_if_reply(msg):
-    print(msg)
-    if 'IFE' in msg['Text'] or 'ife' in msg['Text']:
-      return auto_add_member(msg,'2017IFE抱团群')
-    if '签到' in msg['Text'] or '100days' in msg['Text']:
-      return auto_add_member(msg,'100days')
-    if 'fcc' in msg['Text'] or 'FCC' in msg['Text']:
-      return auto_add_member(msg,'FCC知乎学习小组')
-'''
 
 # 收到好友邀请自动添加好友
 @itchat.msg_register(FRIENDS)
@@ -56,5 +45,15 @@ enableCmdQR=2
 enableCmdQR=True
 '''
 
-itchat.auto_login(enableCmdQR=2,hotReload=True)
+itchat.auto_login(enableCmdQR=2,hotReload=True, statusStorageDir='wechat_auto.pkl')
 itchat.run()
+
+'''
+linux下可以通过如下命令使脚本在后台运行
+nohup auto_invite_out_of_box.py > record.log 2>&1&
+或者使用screen保持脚本不会因ssh断开而中断，也可以在后台挂起运行
+chmod +x auto_invite_out_of_box.py
+screen ./auto_invite_out_of_box.py
+
+或者Windows和OSX平台只需要开着电脑挂着一个终端不要关闭就好了
+'''
