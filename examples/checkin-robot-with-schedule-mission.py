@@ -42,7 +42,7 @@ def response_handler(msg):
     elif '排行' in msg['Text'] and 'helper' in msg['Text']:
         #response = print_top_members()
         response = '每日23：00公布签到排行榜！'
-    elif '计划任务' in msg['Text'] and 'helper' in msg['Text'] and '余博伦' in msg['ActualNickName']:
+    elif '计划任务' in msg['Text'] and 'helper' in msg['Text'] and 'xxxxxxxxxxx' in msg['ActualNickName']:
         run_threaded(daily_job)
         response = '开始自动执行每日计划任务！'
     else:
