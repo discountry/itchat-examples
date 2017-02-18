@@ -80,13 +80,16 @@ def print_top_members():
     return content
 
 def auto_print_top_members():
-    response = print_top_members()
+    auto_reply_result(print_top_members())
+
+def auto_remove_members():
+    auto_reply_result(delete_unchecked_member(get_unchecked_member()))
+
+def auto_reply_result(method):
+    response = method
     chatroom = itchat.search_chatrooms('100days')[0]
     print(chatroom['UserName'])
     itchat.send(response, toUserName=chatroom['UserName'])
-
-def auto_remove_members():
-    delete_unchecked_member(get_unchecked_member())
 
 def record_schedule():
     print('Schedule running...')
