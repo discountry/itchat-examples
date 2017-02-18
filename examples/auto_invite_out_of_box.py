@@ -9,7 +9,7 @@ pip install itchat pillow
 '''
 
 # 开启自动邀请加入群聊功能的微信群组列表，字典key是好友发来消息的触发关键字，value是群聊的名称，你可以配置相互对应任意数量的关键词：群组
-group_dict = {'fcc':'FCC知乎学习小组', '北京':'freecodecamp北京', 'bj':'freecodecamp北京', '100days':'100days', 'ife':'2017IFE','IFE':'2017IFE'}
+group_dict = {'fcc':'FCC知乎学习小组', '北京':'freecodecamp北京', 'bj':'freecodecamp北京', '100days':'100days', 'ife':'2017IFE'}
 
 #自动搜索好友列表，邀请好友加群的主要逻辑
 def auto_add_member(userName,roomName):
@@ -29,15 +29,15 @@ def auto_add_member(userName,roomName):
 #处理微信聊天消息，根据关键字返回相应群组邀请链接
 @itchat.msg_register(TEXT)
 def auto_invite_reply(msg):
-    if msg['Text'] in group_dict:
-        return auto_add_member(msg['FromUserName'],group_dict[msg['Text']])
+    if msg['Text'].strip().lower() in group_dict:
+        return auto_add_member(msg['FromUserName'],group_dict[msg['Text'].strip().lower()])
 
 # 收到好友邀请自动添加好友
 @itchat.msg_register(FRIENDS)
 def add_friend(msg):
         print(msg)
         itchat.add_friend(msg['RecommendInfo']['UserName'],status=3,verifyContent='自动添加好友成功！') # 该操作会自动将新好友的消息录入，不需要重载通讯录
-        if msg['RecommendInfo']['Content'] in group_dict:
+        if msg['RecommendInfo']['Content'].strip().lower() in group_dict:
             auto_add_member(msg['RecommendInfo']['UserName'],group_dict[msg['Text']])
 
 '''
