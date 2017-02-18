@@ -38,7 +38,7 @@ def add_friend(msg):
         print(msg)
         itchat.add_friend(msg['RecommendInfo']['UserName'],status=3,verifyContent='自动添加好友成功！') # 该操作会自动将新好友的消息录入，不需要重载通讯录
         if msg['RecommendInfo']['Content'] in group_dict:
-            return auto_add_member(msg['RecommendInfo']['UserName'],group_dict[msg['Text']])
+            auto_add_member(msg['RecommendInfo']['UserName'],group_dict[msg['Text']])
 
 '''
 如果是在Linux环境下，请设置
